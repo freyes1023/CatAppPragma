@@ -1,0 +1,18 @@
+{
+    "sourceFile": ".vscode/settings.json",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1765871451095,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1765871451095,
+            "name": "Commit-0",
+            "content": "{\n  \"typescript.preferences.autoImportFileExcludePatterns\": [\n    \"@ionic/angular/common\",\n    \"@ionic/angular/standalone\"\n  ],\n  \"java.configuration.updateBuildConfiguration\": \"interactive\"\n}\n"
+        }
+    ]
+}
