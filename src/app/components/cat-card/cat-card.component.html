@@ -1,0 +1,12 @@
+@if (breed) {
+  <ion-card class="ion-margin">
+   <app-cat-imagen [imageReference]="breed.reference_image_id"> </app-cat-imagen>
+      <ion-card-header>
+        <ion-card-title>{{breed.name}}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p>{{breed.description}}</p>
+      </ion-card-content>
+   </ion-card>
+
+}

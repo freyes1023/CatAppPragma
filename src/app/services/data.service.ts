@@ -1,83 +1,37 @@
-import { Injectable } from '@angular/core';
-
-export interface Message {
-  fromName: string;
-  subject: string;
-  date: string;
-  id: number;
-  read: boolean;
-}
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { IBreed } from '../interfaces/IBreed';
+import { IImageBreed } from '../interfaces/IImageBreed';
+import { effect  } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
-  public messages: Message[] = [
-    {
-      fromName: 'Matt Chorsey',
-      subject: 'New event: Trip to Vegas',
-      date: '9:32 AM',
-      id: 0,
-      read: false
-    },
-    {
-      fromName: 'Lauren Ruthford',
-      subject: 'Long time no chat',
-      date: '6:12 AM',
-      id: 1,
-      read: false
-    },
-    {
-      fromName: 'Jordan Firth',
-      subject: 'Report Results',
-      date: '4:55 AM',
-      id: 2,
-      read: false
-    },
-    {
-      fromName: 'Bill Thomas',
-      subject: 'The situation',
-      date: 'Yesterday',
-      id: 3,
-      read: false
-    },
-    {
-      fromName: 'Joanne Pollan',
-      subject: 'Updated invitation: Swim lessons',
-      date: 'Yesterday',
-      id: 4,
-      read: false
-    },
-    {
-      fromName: 'Andrea Cornerston',
-      subject: 'Last minute ask',
-      date: 'Yesterday',
-      id: 5,
-      read: false
-    },
-    {
-      fromName: 'Moe Chamont',
-      subject: 'Family Calendar - Version 1',
-      date: 'Last Week',
-      id: 6,
-      read: false
-    },
-    {
-      fromName: 'Kelly Richardson',
-      subject: 'Placeholder Headhots',
-      date: 'Last Week',
-      id: 7,
-      read: false
-    }
-  ];
-
+  private http = inject(HttpClient);
+  private baseUrl = environment.apiUrl;
+  limit = 10;
   constructor() { }
-
-  public getMessages(): Message[] {
-    return this.messages;
+  
+  getListBreeds(lastPage = 0):Observable<IBreed[]> {
+    const params = `?limit=${this.limit}&page=${lastPage}`;
+    return this.http.get<IBreed[]>(`${this.baseUrl}/breeds${params}`);
   }
 
-  public getMessageById(id: number): Message {
-    return this.messages[id];
+  getBredById(id:string):Observable<IBreed> {
+    return this.http.get<IBreed>(`${this.baseUrl}/breeds/${id}`);
   }
+
+  searchBreed(q:string):Observable<IBreed[]> {
+    return this.http.get<IBreed[]>(`${this.baseUrl}/breeds/search?q=${q}`);
+  }
+
+  getImagenBreed(imagen_ref:string):Observable<IImageBreed> {
+    return this.http.get<IImageBreed>(`${this.baseUrl}/images/${imagen_ref}`);
+  }
+
+
+
 }

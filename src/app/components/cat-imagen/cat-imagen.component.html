@@ -1,0 +1,7 @@
+@if(imagenURl()){
+  <ion-img
+    [src]="imagenURl()"
+    alt="The Wisconsin State Capitol building in Madison, WI at night"
+    (ionError)="onError($event)"
+  ></ion-img>
+}
