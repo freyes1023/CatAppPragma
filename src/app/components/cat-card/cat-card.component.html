@@ -1,12 +1,29 @@
 @if (breed) {
-  <ion-card class="ion-margin">
-   <app-cat-imagen [imageReference]="breed.reference_image_id"> </app-cat-imagen>
-      <ion-card-header>
-        <ion-card-title>{{breed.name}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <p>{{breed.description}}</p>
-      </ion-card-content>
-   </ion-card>
+<ion-card class="card">
+  <app-cat-imagen [imageReference]="breed.reference_image_id"> </app-cat-imagen>
+  <ion-card-header class="card_header">
+    <ion-card-title>{{breed.name}} </ion-card-title>
+    <span>{{get_country(breed.country_code)}}</span>
+    <div class="card_header--range">
+      
+      
+      <ion-text class="ion-margin-top" >level intelligence: {{breed.intelligence}}</ion-text>
+      <ion-range aria-label="intelligence_range" class="card_header--range-indicator" disabled="true" [min]="1" [max]="5" [value]="breed.intelligence || 0" [pin]="true" [ticks]="true"
+        [snaps]="true">
+        <ion-icon slot="start" name="star-outline"></ion-icon>
+  <ion-icon slot="end" name="ribbon-outline"></ion-icon>
+      </ion-range>
+    </div>
+  </ion-card-header>
+
+  <ion-card-content>
+    <p class="card_text-description">{{breed.description}}</p>
+    <div class="card_text-footer">
+      <span >View more </span> <ion-icon  name="eye-outline"></ion-icon>
+    </div>
+  </ion-card-content>
+
+ 
+</ion-card>
 
 }

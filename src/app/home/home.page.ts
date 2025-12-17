@@ -118,4 +118,30 @@ content!: IonContent;
     this.lastPage.update(p => p + 1);
     event.target.complete();
   }
+
+  handleInput(event: any) {
+    const query = event.target.value.trim();
+    console.log("🚀 ~ HomePage ~ handleInput ~ handleInput:", query)
+    if (this.loading()) {
+      return;
+    }
+    if (query.length === 0) {
+      this.lastPage.set(0);
+      return;
+    }
+
+
+    this.loading.set(true);
+    this.data.searchBreed(query).subscribe({
+      next: (results: IBreed[]) => {
+        this.breeds.set(results);
+        this.hasNextPage = false;
+      },
+      error: (error: any) =>
+        console.error('🚀 ~ HomePage ~ handleInput ~ error:', error),
+      complete: () => {
+        this.loading.set(false);
+      },
+    });
+  }
 }

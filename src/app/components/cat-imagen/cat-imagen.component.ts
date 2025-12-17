@@ -6,7 +6,7 @@ import { IonicModule } from '@ionic/angular';
 @Component({
   selector: 'app-cat-imagen',
   templateUrl: './cat-imagen.component.html',
-  styleUrls: ['./cat-imagen.component.css'],
+  styleUrls: ['./cat-imagen.component.scss'],
   imports: [IonicModule, CommonModule],
 })
 export class CatImagenComponent implements OnInit {
