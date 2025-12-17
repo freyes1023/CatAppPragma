@@ -5,8 +5,15 @@ const routes: Routes = [
   {
     path: 'home',
     loadComponent: () =>
-      import('./home/home.page').then(
+      import('./pages/home/home.page').then(
         (m) => m.HomePage,
+      ),
+  },
+  {
+    path: 'breed/:id',
+    loadComponent: () =>
+      import('./pages/breed-details/breed-details.component').then(
+        (m) => m.BreedDetailsComponent,
       ),
   },
   {

@@ -14,11 +14,12 @@ import {
   RefresherCustomEvent,
 } from '@ionic/angular';
 
-import { DataService } from '../services/data.service';
+import { DataService } from '../../services/data.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IBreed } from '../interfaces/IBreed';
-import { CatCardComponent } from '../components/cat-card/cat-card.component';
+import { IBreed } from '../../interfaces/IBreed';
+import { CatCardComponent } from '../../components/cat-card/cat-card.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -29,6 +30,7 @@ import { CatCardComponent } from '../components/cat-card/cat-card.component';
 })
 export class HomePage  {
   private data = inject(DataService);
+  private router = inject(Router);
   breeds = signal<IBreed[]>([] as IBreed[]);
   lastPage = signal(0);
   loading = signal(false);
@@ -143,5 +145,10 @@ content!: IonContent;
         this.loading.set(false);
       },
     });
+  }
+
+  goToDetail(id:string){
+    console.log("🚀 ~ HomePage ~ goToDetail ~ id:", id);
+    this.router.navigate(['breed',id])
   }
 }

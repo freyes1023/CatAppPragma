@@ -20,7 +20,7 @@
   
   <ion-list class="list">
      @for (breed of breeds(); track breed.id) {
-      <app-cat-card [breed]="breed"></app-cat-card>
+      <app-cat-card [breed]="breed" (click)="goToDetail(breed.id)"></app-cat-card>
     } 
   </ion-list>
 @if(loading()){

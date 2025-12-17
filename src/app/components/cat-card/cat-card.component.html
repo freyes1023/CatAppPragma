@@ -1,9 +1,11 @@
 @if (breed) {
 <ion-card class="card">
-  <app-cat-imagen [imageReference]="breed.reference_image_id"> </app-cat-imagen>
+  @if(showImage){
+    <app-cat-imagen [imageReference]="breed.reference_image_id"> </app-cat-imagen>
+  }
   <ion-card-header class="card_header">
     <ion-card-title>{{breed.name}} </ion-card-title>
-    <span>{{get_country(breed.country_code)}}</span>
+    <span>{{utilsService.get_country(breed.country_code)}}</span>
     <div class="card_header--range">
       
       
@@ -17,10 +19,22 @@
   </ion-card-header>
 
   <ion-card-content>
-    <p class="card_text-description">{{breed.description}}</p>
-    <div class="card_text-footer">
-      <span >View more </span> <ion-icon  name="eye-outline"></ion-icon>
-    </div>
+    <p  [ngClass]="{'card_text-description': !showDetails}">{{breed.description}}</p>
+    @if(!showDetails){
+      <div class="card_text-footer">
+        <span >View more </span> <ion-icon  name="eye-outline"></ion-icon>
+      </div>
+    } @else {
+      @for (item of breedKeys; track $index) {
+       <!--  @if(breed[item] && item !== 'description' && item !== 'name' && item !== 'reference_image_id' && item !== 'country_code' && item !== 'intelligence') { -->
+          <div class="card_text-detail">
+            <strong>{{utilsService.getTitleForKey(item)}}: </strong>
+            <span>{{breedValueForKey(item) }}</span>
+          </div>
+       <!--  } -->
+      
+      }
+    }
   </ion-card-content>
 
  

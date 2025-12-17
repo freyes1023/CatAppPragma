@@ -1,0 +1,36 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button icon="arrow-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">
+      {{breed().name}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header> 
+<ion-content scrollEvents="true">
+
+  <!-- TARGET DEL SCROLL -->
+  <div #scrollTarget>
+
+    <!-- FOTO STICKY -->
+    <div class="photo-wrapper">
+      <div
+        class="photo-inner"
+        [style.transform]="photoTransform"
+        [style.borderRadius]="borderRadius"
+      >
+      @if (breed().reference_image_id) {
+        <app-cat-imagen [imageReference]="breed().reference_image_id"></app-cat-imagen>
+      }
+      </div>
+    </div>
+
+    <!-- CONTENIDO -->
+    <div>
+      <app-cat-card [breed]="breed()" [showDetails]="true" [showImage]="false" ></app-cat-card>
+    </div>
+
+  </div>
+
+</ion-content>

@@ -20,7 +20,7 @@ export class DataService {
     return this.http.get<IBreed[]>(`${this.baseUrl}/breeds${params}`);
   }
 
-  getBredById(id:string):Observable<IBreed> {
+  getBreedById(id:string):Observable<IBreed> {
     return this.http.get<IBreed>(`${this.baseUrl}/breeds/${id}`);
   }
 
