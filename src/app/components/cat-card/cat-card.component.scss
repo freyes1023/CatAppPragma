@@ -1,3 +1,6 @@
+$layout-breakpoint-small: 575px;
+
+
 .card {
     border-top-left-radius: 1em;
     border-top-right-radius: 1em;
@@ -47,7 +50,19 @@
         left: 0;
     }
 
+    &_text-detail {
+        @media (min-width: $layout-breakpoint-small) {
+            margin-top: 1em;
+            display: grid;
+            gap: 8px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+
+        }
+    }
+
 }
+
 
 ion-range {
     --bar-background: #e9e9e9;

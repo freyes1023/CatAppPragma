@@ -1,4 +1,11 @@
+$layout-breakpoint-small: 575px;
+
 .img{
     aspect-ratio : 16/9;
     object-fit: cover;
+    @media (min-width: $layout-breakpoint-small) {
+        aspect-ratio : 4/3;
+        object-fit: contain;
+        
+    }
 }

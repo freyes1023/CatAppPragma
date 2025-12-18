@@ -1,11 +1,5 @@
 $layout-breakpoint-small: 575px;
-.container{
-    max-width: 65em;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-self: center;
-}
+
 .list{
 @media (min-width: $layout-breakpoint-small) {
     display: grid;

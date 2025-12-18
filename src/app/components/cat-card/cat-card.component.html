@@ -25,15 +25,17 @@
         <span >View more </span> <ion-icon  name="eye-outline"></ion-icon>
       </div>
     } @else {
+      <div class="card_text-detail ">
       @for (item of breedKeys; track $index) {
        <!--  @if(breed[item] && item !== 'description' && item !== 'name' && item !== 'reference_image_id' && item !== 'country_code' && item !== 'intelligence') { -->
-          <div class="card_text-detail">
-            <strong>{{utilsService.getTitleForKey(item)}}: </strong>
-            <span>{{breedValueForKey(item) }}</span>
-          </div>
-       <!--  } -->
-      
-      }
+            <div>
+              <strong>{{utilsService.getTitleForKey(item)}}: </strong>
+              <span>{{breedValueForKey(item) }}</span>
+            </div>
+            <!--  } -->
+            
+          }
+        </div>
     }
   </ion-card-content>
 
