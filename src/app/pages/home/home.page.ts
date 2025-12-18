@@ -51,7 +51,7 @@ content!: IonContent;
     untracked(() => {
       if (!this.loading()) {
         this.loading.set(true);
-        this.loadBreeds(lastPage, 'effectLoadBreed');
+        this.loadBreeds(lastPage, );
       }
     });
   });
@@ -75,14 +75,14 @@ content!: IonContent;
         const hasScroll = await this.hasScroll();
 
         if (!hasScroll) {
-          console.log('📦 No hay scroll, cargando siguiente página...');
+          console.debug('📦 No hay scroll, cargando siguiente página...');
           this.lastPage.update(p => p + 1);
         }
       });
     });
   }
 
-  loadBreeds(lastPage: number = 0, route: string) {
+  loadBreeds(lastPage: number = 0) {
     if (lastPage === 0) {
       this.breeds.set([] as IBreed[]);
       this.hasNextPage = true;
@@ -98,7 +98,7 @@ content!: IonContent;
         if (results.length === 0) this.hasNextPage = false;
       },
       error: (error: any) =>
-        console.error('🚀 ~ HomePage ~ loadBreeds ~ error:', error),
+        console.error('⛔️ ~ HomePage ~ loadBreeds ~ error:', error),
       complete: () => {
         this.loading.set(false);
       },
@@ -123,13 +123,13 @@ content!: IonContent;
 
   handleInput(event: any) {
     const query = event.target.value.trim();
-    console.log("🚀 ~ HomePage ~ handleInput ~ handleInput:", query)
     if (this.loading()) {
       return;
     }
     if (query.length === 0) {
-      this.lastPage.set(0);
+      this.loadBreeds()
       return;
+
     }
 
 
@@ -148,7 +148,6 @@ content!: IonContent;
   }
 
   goToDetail(id:string){
-    console.log("🚀 ~ HomePage ~ goToDetail ~ id:", id);
     this.router.navigate(['breed',id])
   }
 }

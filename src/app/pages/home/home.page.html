@@ -7,7 +7,7 @@
   <ion-toolbar>
     <div class="container" >
 
-      <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)"></ion-searchbar>
+      <ion-searchbar [debounce]="1000" (ionInput)="handleInput($event)" (ionClear)="handleInput($event)" (ionCancel)="handleInput($event)" ></ion-searchbar>
     </div>
   </ion-toolbar>
 </ion-header>

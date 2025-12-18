@@ -30,7 +30,24 @@
        <!--  @if(breed[item] && item !== 'description' && item !== 'name' && item !== 'reference_image_id' && item !== 'country_code' && item !== 'intelligence') { -->
             <div>
               <strong>{{utilsService.getTitleForKey(item)}}: </strong>
-              <span>{{breedValueForKey(item) }}</span>
+              
+
+              @if(utilsService.getTypeForKey(item) == 'range'){
+                <span> {{breedValueForKey(item)}} </span> -
+                @for(point of [0,0,0,0,0]; track $index ){
+                  @if(isValueRangeBiggerThatIndex(breedValueForKey(item),$index)){
+                    <ion-icon name="radio-button-on-outline"></ion-icon>
+                  } @else {
+                    <ion-icon name="radio-button-off-outline"></ion-icon>
+                  }
+                
+                }
+              } @else if(utilsService.getTypeForKey(item) == 'url'){
+                <a href="{{breedValueForKey(item)}}" target="_blank">{{breedValueForKey(item)}}</a>
+              } @else {
+                <span>{{breedValueForKey(item)}} </span>
+              
+              }
             </div>
             <!--  } -->
             

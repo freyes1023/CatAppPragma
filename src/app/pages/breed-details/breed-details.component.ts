@@ -48,7 +48,6 @@ export class BreedDetailsComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
       this.id = this.route.snapshot.paramMap.get('id');
-      console.log("🚀 ~ BreedDetailsComponent ~ ngOnInit ~ this.id:", this.id)
       if(this.id){
         this.loadBreedDetails(this.id);
       }
@@ -57,8 +56,12 @@ export class BreedDetailsComponent implements OnInit, AfterViewInit {
   async loadBreedDetails(id: string) {
     try {
       const breedDetails = await firstValueFrom( this.data.getBreedById(id));
+      if (!breedDetails) {
+        console.error('Breed not found');
+        return;
+      }
+      if(!breedDetails.reference_image_id)breedDetails.reference_image_id = 'none';
       this.breed.set(breedDetails);
-      console.log("🚀 ~ BreedDetailsComponent ~ loadBreedDetails ~ breedDetails:", breedDetails)
     } catch (error) {
       console.error('Error loading breed details:', error);
     }

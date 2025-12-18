@@ -35,7 +35,6 @@ export class CatImagenComponent implements OnInit {
     })
   }
   onError(event:any) {
-    console.log("🚀 ~ CatImagenComponent ~ onError ~ onError:")
     this.imagenURl.set(this.imagen_default);
   }
 

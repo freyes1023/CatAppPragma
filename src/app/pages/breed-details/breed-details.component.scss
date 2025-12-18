@@ -8,7 +8,11 @@ $layout-breakpoint-small: 575px;
     height: 220px;
 
     overflow: hidden; /* 🔥 evita ver el contenido atrás */
-    background: #ffffff;
+    background: #fff;
+    @media (prefers-color-scheme: dark) {
+      background: var(--ion-background-color);
+
+    }
     @media (min-width: $layout-breakpoint-small) {
       height: 20em;
       

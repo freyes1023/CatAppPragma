@@ -76,5 +76,11 @@ export class CatCardComponent implements OnInit {
     return value;
   }
 
+  isValueRangeBiggerThatIndex(valueRange:any, Index:number){
+      const maxValue = parseInt(valueRange);
+      return maxValue > Index;
+
+  }
+
   
 }
